@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pomodoro</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Pomodoro</h1>
+
+    <div id="timer">25:00</div>
+
+    <p id="phrase"></p>
+
+    <div id="controls">
+      <button id="start-btn">Estudiar</button>
+      <button id="pause-btn">Pausa</button>
+      <button id="reset-btn">Reset</button>
+      <button id="stop-btn">Stop</button>
+    </div>
+    <footer id="footer">
+      <p>
+        Jorge Bianchi · Developer ·
+        <a
+          href="https://www.paypal.me/BhagavadGitaJuego"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Colaboraciones
+        </a>
+      </p>
+    </footer>
+
+    <script>
+      window.PHRASES = {{ phrases | tojson }};
+    </script>
+
+    <script src="{{ url_for('static', filename='js/pomodoro.js') }}"></script>
+
+    <script>
+      // Conectar botones con la state machine
+      document.getElementById("start-btn").addEventListener("click", () => {
+        handleEvent("start_study");
+      });
+
+      document.getElementById("pause-btn").addEventListener("click", () => {
+        handleEvent("pause");
+      });
+
+      document.getElementById("reset-btn").addEventListener("click", () => {
+        handleEvent("reset");
+      });
+
+      document.getElementById("stop-btn").addEventListener("click", () => {
+        handleEvent("stop");
+      });
+    </script>
+  </body>
+</html>
